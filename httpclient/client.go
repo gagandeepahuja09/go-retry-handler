@@ -40,3 +40,19 @@ func NewClient(opts ...Option) *Client {
 
 	return &client
 }
+
+func (c *Client) Do(request *http.Request) (*http.Response, error) {
+
+}
+
+func (c *Client) reportRequestStart(request *http.Request) {
+	for _, plugin := range c.plugins {
+		plugin.OnRequestStart(request)
+	}
+}
+
+func (c *Client) reportRequestEnd(request *http.Request) {
+	for _, plugin := range c.plugins {
+		plugin.OnRequestEnd(request)
+	}
+}
