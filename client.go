@@ -5,6 +5,10 @@ import (
 	"net/http"
 )
 
+type Doer interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+
 // multiple kinds of clients: http client, hystrix client
 type Client interface {
 	Get(url string, headers http.Header) (*http.Response, error)
