@@ -10,6 +10,7 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
+// stateless solution to ensure that it doesn't need to depend on the last value used.
 type Backoff interface {
 	Next(retry int) time.Duration
 }
